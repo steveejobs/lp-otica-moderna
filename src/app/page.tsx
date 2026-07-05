@@ -2,7 +2,6 @@ import Image from "next/image";
 import {
   ArrowRight,
   BadgeCheck,
-  BriefcaseBusiness,
   Eye,
   Glasses,
   Instagram,
@@ -14,11 +13,8 @@ import {
 } from "lucide-react";
 import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
+import { PremiumGallery, type GalleryGroup } from "@/components/PremiumGallery";
 import { SmartVideo } from "@/components/SmartVideo";
-import {
-  TestimonialsColumn,
-  TestimonialsMobileMarquee,
-} from "@/components/ui/testimonials-columns-1";
 import {
   frameImages,
   internalImages,
@@ -32,65 +28,45 @@ import {
 } from "@/lib/site";
 
 const guidedChoices = [
-  {
-    title: "Para renovar o estilo",
-    text: "Armações que atualizam a imagem sem perder sua personalidade.",
-    icon: Sparkles,
-  },
-  {
-    title: "Para escolher pelo formato do rosto",
-    text: "Proporção, linhas e presença para valorizar o rosto.",
-    icon: Eye,
-  },
-  {
-    title: "Para trabalhar em telas",
-    text: "Lentes e armações pensadas para conforto em rotina digital.",
-    icon: Monitor,
-  },
-  {
-    title: "Para usar no sol",
-    text: "Solares com proteção, acabamento e encaixe para o dia a dia.",
-    icon: Sun,
-  },
-  {
-    title: "Para encontrar seu Ray-Ban",
-    text: "Curadoria Ray-Ban com orientação para grau, sol e estilo.",
-    icon: Glasses,
-  },
+  { title: "Renovar o estilo", text: "Armações com presença, sem exagero.", icon: Sparkles },
+  { title: "Formato do rosto", text: "Proporção e encaixe com orientação.", icon: Eye },
+  { title: "Trabalho em telas", text: "Lentes e conforto para rotina digital.", icon: Monitor },
+  { title: "Usar no sol", text: "Solares com proteção e acabamento.", icon: Sun },
+  { title: "Encontrar Ray-Ban", text: "Curadoria para grau, sol e estilo.", icon: Glasses },
 ];
 
-const featuredCollections = [
+const galleryGroups: GalleryGroup[] = [
   {
-    eyebrow: "Armações e solares",
-    title: "Modelos para grau, sol e rotina.",
-    text: "Produto em primeiro plano, apoio visual e copy direta para escolher melhor.",
-    images: frameImages,
-    href: site.instagramUrl,
-    variant: "is-duo",
-  },
-  {
-    eyebrow: "Ray-Ban Bruna",
-    title: "Ray-Ban separado da galeria interna.",
-    text: "Fotos próprias da coleção Ray-Ban Bruna, com produto como protagonista e acabamento em destaque.",
-    images: rayBanBrunaImages,
-    href: "#rayban",
-    variant: "is-airy",
-  },
-  {
-    eyebrow: "Outra Ray-Ban",
-    title: "Outra coleção Ray-Ban em vitrine editorial.",
-    text: "A segunda coleção Ray-Ban fica em bloco próprio, sem misturar com loja, balcão ou fachada.",
-    images: rayBanMImages,
-    href: "#rayban",
-    variant: "is-duo",
-  },
-  {
+    id: "loja",
+    label: "Loja",
     eyebrow: "Galeria interna",
-    title: "Fotos reais da loja e atendimento.",
-    text: "Fachada, ambiente, balcão e atendimento presencial aparecem em uma coleção separada.",
-    images: internalImages,
-    href: "#sobre",
-    variant: "is-airy",
+    title: "Ambiente real para escolher com calma.",
+    text: "Fachada, balcão, atendimento e detalhes internos em uma narrativa compacta.",
+    images: [internalImages[1], internalImages[3], internalImages[5], internalImages[4]],
+  },
+  {
+    id: "bruna",
+    label: "Ray-Ban Bruna",
+    eyebrow: "Ray-Ban Bruna",
+    title: "Produto em primeiro plano.",
+    text: "Uma coleção Ray-Ban separada da loja, com acabamento e presença visual.",
+    images: rayBanBrunaImages,
+  },
+  {
+    id: "rayban",
+    label: "Ray-Ban",
+    eyebrow: "Outra coleção Ray-Ban",
+    title: "Outra curadoria Ray-Ban.",
+    text: "Modelos próprios para experimentar com orientação de estilo e lente.",
+    images: rayBanMImages.slice(0, 4),
+  },
+  {
+    id: "armacoes",
+    label: "Armações",
+    eyebrow: "Armações e solares",
+    title: "Modelos sem misturar com loja ou Ray-Ban.",
+    text: "Produtos, solares e armações organizados como vitrine editorial.",
+    images: frameImages.slice(0, 4),
   },
 ];
 
@@ -98,18 +74,16 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main id="top" className="moderna-reference-page">
+      <main id="top" className="premium-page">
         <Hero />
         <ProofBar />
         <GuidedChoice />
-        <FeaturedCollections />
+        <GallerySection />
         <InsideStore />
         <RayBanSection />
         <VideoExperience />
-        <TrendsSection />
-        <TestimonialsSection />
+        <TrendsAndTestimonials />
         <LocationSection />
-        <FinalCTASection />
       </main>
       <Footer />
     </>
@@ -118,50 +92,34 @@ export default function Home() {
 
 function Hero() {
   return (
-    <section className="hero-section moderna-reference-hero" aria-labelledby="hero-title">
-      <div className="site-shell hero-grid moderna-reference-hero-grid">
-        <div className="hero-copy">
-          <Image
-            src={site.logoIcon}
-            width={220}
-            height={104}
-            alt="Ótica Moderna Araguaína"
-            priority
-            className="moderna-hero-logo"
-          />
-          <p className="eyebrow">Ótica boutique em Araguaína</p>
-          <h1 id="hero-title">
-            Enxergue com estilo na <span>Ótica Moderna.</span>
-          </h1>
-          <p>
-            Óculos de grau, solares, Ray-Ban e consultoria de imagem para escolher a armação certa em Araguaína.
-          </p>
+    <section className="premium-hero" aria-labelledby="hero-title">
+      <div className="site-shell premium-hero-grid">
+        <div className="premium-hero-copy">
+          <Image src={site.logoIcon} width={230} height={108} alt="Ótica Moderna Araguaína" priority className="premium-logo" />
+          <p className="eyebrow">Ótica Moderna Araguaína</p>
+          <h1 id="hero-title">Enxergue com estilo na Ótica Moderna.</h1>
+          <p>Óculos de grau, solares, Ray-Ban e consultoria de imagem para escolher a armação certa em Araguaína.</p>
           <div className="hero-actions">
-            <a href={site.instagramUrl} className="button button-red" target="_blank" rel="noopener noreferrer">
+            <a href={site.instagramUrl} className="button button-primary" target="_blank" rel="noopener noreferrer">
               <Instagram size={18} aria-hidden="true" />
               Ver modelos no Instagram
             </a>
-            <a href={site.mapsRouteUrl} className="button button-ghost" target="_blank" rel="noopener noreferrer">
+            <a href={site.mapsRouteUrl} className="button button-secondary" target="_blank" rel="noopener noreferrer">
               <Navigation size={18} aria-hidden="true" />
               Como chegar
             </a>
           </div>
         </div>
-
-        <div className="moderna-hero-showcase" aria-label="Fachada, loja e óculos da Ótica Moderna">
-          <figure className="moderna-hero-photo is-main">
-            <Image src={site.heroImage} alt="Fachada da Ótica Moderna Araguaína" fill priority sizes="(max-width: 900px) 92vw, 620px" />
+        <div className="premium-hero-media" aria-label="Loja e produtos da Ótica Moderna">
+          <figure className="hero-photo hero-photo-main">
+            <Image src={site.heroImage} alt="Fachada da Ótica Moderna Araguaína" fill priority sizes="(max-width: 900px) 92vw, 640px" />
           </figure>
-          <figure className="moderna-hero-photo is-top">
-            <Image src={frameImages[0].src} alt={frameImages[0].alt} fill sizes="(max-width: 900px) 44vw, 240px" />
-          </figure>
-          <figure className="moderna-hero-photo is-bottom">
+          <figure className="hero-photo hero-photo-product">
             <Image src={rayBanBrunaImages[1].src} alt={rayBanBrunaImages[1].alt} fill sizes="(max-width: 900px) 44vw, 240px" />
           </figure>
-          <div className="hero-brand-signal moderna-hero-signal">
-            <span>Consultoria de imagem</span>
-            <span>Ray-Ban</span>
-            <span>Até 10x</span>
+          <div className="hero-badge">
+            <BadgeCheck size={16} aria-hidden="true" />
+            Consultoria de imagem · até 10x
           </div>
         </div>
       </div>
@@ -171,141 +129,76 @@ function Hero() {
 
 function ProofBar() {
   return (
-    <section className="hero-proof-section" aria-label="Provas rápidas">
-      <dl className="site-shell hero-proof-bar">
-        {proofItems.map((item, index) => (
-          <div className="hero-proof-item" key={item.title}>
-            {index > 0 ? <span className="hero-proof-separator" aria-hidden="true" /> : null}
-            <dt>{item.title}</dt>
-            <dd>{item.detail}</dd>
-          </div>
+    <section className="proof-section" aria-label="Diferenciais rápidos">
+      <div className="site-shell proof-grid">
+        {proofItems.map((item) => (
+          <article key={item.title}>
+            <strong>{item.title}</strong>
+            <span>{item.detail}</span>
+          </article>
         ))}
-      </dl>
+      </div>
     </section>
   );
 }
 
 function GuidedChoice() {
   return (
-    <section id="consultoria" className="section moderna-guided-section" aria-labelledby="guided-title">
-      <div className="site-shell">
+    <section className="section guided-section" aria-labelledby="guided-title">
+      <div className="site-shell section-head-row">
         <div className="section-heading compact">
           <p className="eyebrow">Escolha guiada</p>
-          <h2 id="guided-title">Uma experiência boutique para escolher seus óculos.</h2>
-          <p>
-            Orientação por momento de uso, rosto, estilo e rotina.
-          </p>
+          <h2 id="guided-title">Escolha por rosto, rotina e estilo.</h2>
         </div>
-        <div className="olhar-choice-grid moderna-choice-grid">
-          {guidedChoices.map((item) => {
-            const Icon = item.icon;
-
-            return (
-              <article className="olhar-choice-card" key={item.title}>
-                <Icon size={22} aria-hidden="true" />
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-                <a href={site.instagramUrl} target="_blank" rel="noopener noreferrer">
-                  Ver modelos <ArrowRight size={15} aria-hidden="true" />
-                </a>
-              </article>
-            );
-          })}
-        </div>
+        <p>Menos tentativa, mais orientação. Cada indicação parte do seu uso real.</p>
+      </div>
+      <div className="site-shell guided-grid">
+        {guidedChoices.map((item) => {
+          const Icon = item.icon;
+          return (
+            <article className="guided-card" key={item.title}>
+              <Icon size={20} aria-hidden="true" />
+              <h3>{item.title}</h3>
+              <p>{item.text}</p>
+            </article>
+          );
+        })}
       </div>
     </section>
   );
 }
 
-function FeaturedCollections() {
+function GallerySection() {
   return (
-    <section id="galeria" className="featured-collections-section moderna-featured-section" aria-labelledby="collections-title">
-      <div className="site-shell featured-collections-shell">
-        <div className="featured-collections-header">
-          <div className="section-heading featured-collections-heading">
-            <p className="eyebrow">Galerias e coleções</p>
-            <h2 id="collections-title">Vitrines fortes, separadas por assunto.</h2>
-            <p>
-              Blocos grandes, mídia protagonista e coleções com contexto.
-            </p>
-          </div>
+    <section id="galeria" className="section gallery-section" aria-labelledby="gallery-title">
+      <div className="site-shell section-head-row">
+        <div className="section-heading compact">
+          <p className="eyebrow">Galerias</p>
+          <h2 id="gallery-title">Coleções com propósito, sem excesso.</h2>
         </div>
-        <div className="featured-collections-carousel moderna-featured-list">
-          <div className="featured-collections-viewport">
-            <div className="featured-collections-track">
-              {featuredCollections.map((collection) => (
-                <CollectionPanel key={collection.title} {...collection} />
-              ))}
-            </div>
-          </div>
-        </div>
+        <p>Troque manualmente ou deixe a vitrine alternar sozinha. Cada aba tem imagens exclusivas.</p>
+      </div>
+      <div className="site-shell">
+        <PremiumGallery groups={galleryGroups} />
       </div>
     </section>
-  );
-}
-
-function CollectionPanel({
-  eyebrow,
-  title,
-  text,
-  images,
-  href,
-  variant,
-}: {
-  eyebrow: string;
-  title: string;
-  text: string;
-  images: typeof internalImages;
-  href: string;
-  variant: string;
-}) {
-  const supports = images.slice(1, 3);
-
-  return (
-    <article className={`featured-collection-slide ${variant}`}>
-      <figure className="featured-collection-media is-dominant is-image">
-        <Image src={images[0].src} alt={images[0].alt} fill sizes="(max-width: 760px) 92vw, 48vw" className="featured-collection-image" />
-      </figure>
-      <div className="featured-collection-supports">
-        {supports.map((image, index) => (
-          <figure className={`featured-collection-media is-image support-${index + 1}`} key={image.src}>
-            <Image src={image.src} alt={image.alt} fill sizes="(max-width: 760px) 44vw, 18vw" className="featured-collection-image" />
-          </figure>
-        ))}
-      </div>
-      <div className="featured-collection-copy">
-        <span>{eyebrow}</span>
-        <h3>{title}</h3>
-        <p>{text}</p>
-        <a href={href} className="button button-ghost" target={href.startsWith("http") ? "_blank" : undefined} rel={href.startsWith("http") ? "noopener noreferrer" : undefined}>
-          Explorar <ArrowRight size={16} aria-hidden="true" />
-        </a>
-      </div>
-    </article>
   );
 }
 
 function InsideStore() {
   return (
-    <section id="sobre" className="section moderna-inside-section" aria-labelledby="inside-title">
-      <div className="site-shell olhar-gallery-layout moderna-inside-layout">
-        <div className="olhar-gallery-media">
-          <figure className="olhar-gallery-main">
-            <Image src={internalImages[0].src} alt={internalImages[0].alt} fill sizes="(max-width: 900px) 92vw, 52vw" />
-          </figure>
-          <div className="olhar-gallery-supports">
-            {internalImages.slice(1, 3).map((image) => (
-              <figure className="olhar-gallery-small" key={image.src}>
-                <Image src={image.src} alt={image.alt} fill sizes="(max-width: 900px) 44vw, 18vw" />
-              </figure>
-            ))}
-          </div>
+    <section id="sobre" className="section inside-section" aria-labelledby="inside-title">
+      <div className="site-shell inside-grid">
+        <div className="inside-media">
+          <figure className="inside-main"><Image src={internalImages[0].src} alt={internalImages[0].alt} fill sizes="(max-width: 900px) 92vw, 50vw" /></figure>
+          <figure><Image src={internalImages[6].src} alt={internalImages[6].alt} fill sizes="(max-width: 900px) 44vw, 18vw" /></figure>
+          <figure><Image src={internalImages[8].src} alt={internalImages[8].alt} fill sizes="(max-width: 900px) 44vw, 18vw" /></figure>
         </div>
-        <div className="section-heading compact olhar-gallery-copy">
+        <div className="section-heading compact">
           <p className="eyebrow">Por dentro da loja</p>
-          <h2 id="inside-title">Por dentro da Ótica Moderna.</h2>
-          <p>Ambiente moderno, atendimento próximo e consultoria para escolher óculos com calma.</p>
-          <a href={site.mapsRouteUrl} className="button button-red" target="_blank" rel="noopener noreferrer">
+          <h2 id="inside-title">Ambiente moderno, atendimento próximo.</h2>
+          <p>Loja real, balcão, atendimento presencial e consultoria para escolher óculos com calma.</p>
+          <a href={site.mapsRouteUrl} className="button button-primary" target="_blank" rel="noopener noreferrer">
             <MapPin size={18} aria-hidden="true" />
             Visitar a loja
           </a>
@@ -317,37 +210,29 @@ function InsideStore() {
 
 function RayBanSection() {
   return (
-    <section id="rayban" className="section moderna-rayban-section" aria-labelledby="rayban-title">
-      <div className="site-shell">
-        <div className="moderna-rayban-title-row">
-          <div className="section-heading compact">
-            <p className="eyebrow">Ray-Ban</p>
-            <h2 id="rayban-title">Ray-Ban na Ótica Moderna.</h2>
-            <p>Ray-Ban aparece como seção própria, sem misturar com fotos internas da loja.</p>
-          </div>
-          <Image src="/assets/otica-moderna/logo-rayban-vermelho.jpg" alt="Ray-Ban" width={190} height={72} className="moderna-rayban-logo" />
+    <section id="rayban" className="section rayban-section" aria-labelledby="rayban-title">
+      <div className="site-shell rayban-head">
+        <div className="section-heading compact">
+          <p className="eyebrow">Ray-Ban</p>
+          <h2 id="rayban-title">Ray-Ban com curadoria própria.</h2>
         </div>
-        <div className="moderna-rayban-split">
-          <RayBanCollection title="Ray-Ban Bruna" images={rayBanBrunaImages} />
-          <RayBanCollection title="Outra coleção Ray-Ban" images={rayBanMImages.slice(0, 6)} />
-        </div>
+        <Image src="/assets/otica-moderna/logo-rayban-vermelho.jpg" alt="Ray-Ban" width={190} height={72} className="rayban-logo" />
+      </div>
+      <div className="site-shell rayban-grid">
+        <RayBanMini title="Ray-Ban Bruna" images={[rayBanBrunaImages[0], rayBanBrunaImages[2], rayBanBrunaImages[3]]} />
+        <RayBanMini title="Outra coleção Ray-Ban" images={[rayBanMImages[4], rayBanMImages[5], rayBanMImages[6]]} />
       </div>
     </section>
   );
 }
 
-function RayBanCollection({ title, images }: { title: string; images: typeof rayBanBrunaImages }) {
+function RayBanMini({ title, images }: { title: string; images: typeof rayBanBrunaImages }) {
   return (
-    <article className="moderna-rayban-card">
+    <article className="rayban-card">
+      <h3>{title}</h3>
       <div>
-        <span>coleção</span>
-        <h3>{title}</h3>
-      </div>
-      <div className="moderna-rayban-gallery">
-        {images.slice(0, 4).map((image, index) => (
-          <figure className={index === 0 ? "is-large" : ""} key={image.src}>
-            <Image src={image.src} alt={image.alt} fill sizes="(max-width: 760px) 44vw, 22vw" />
-          </figure>
+        {images.map((image) => (
+          <figure key={image.src}><Image src={image.src} alt={image.alt} fill sizes="(max-width: 760px) 29vw, 16vw" /></figure>
         ))}
       </div>
     </article>
@@ -356,55 +241,47 @@ function RayBanCollection({ title, images }: { title: string; images: typeof ray
 
 function VideoExperience() {
   return (
-    <section className="section moderna-video-experience" aria-labelledby="video-title">
-      <div className="site-shell olhar-experience-layout">
+    <section className="section video-section" aria-labelledby="video-title">
+      <div className="site-shell video-grid">
         <div className="section-heading compact">
-          <p className="eyebrow">Experiência editorial</p>
-          <h2 id="video-title">Vídeos com ritmo premium e visual editorial.</h2>
-          <p>Um vídeo principal e dois apoios visuais, sem autoplay múltiplo pesado.</p>
-          <div className="olhar-experience-list">
-            <div className="olhar-experience-item">
-              <BadgeCheck size={18} aria-hidden="true" />
-              <span>Ray-Ban em primeiro plano</span>
-            </div>
-            <div className="olhar-experience-item">
-              <BriefcaseBusiness size={18} aria-hidden="true" />
-              <span>Atendimento presencial e virtual</span>
-            </div>
-          </div>
+          <p className="eyebrow">Experiência em vídeo</p>
+          <h2 id="video-title">Poucos vídeos, bem encaixados.</h2>
+          <p>Ray-Ban em movimento, com carregamento leve e pausa fora da viewport.</p>
         </div>
-        <div className="olhar-experience-video-card moderna-video-card">
-          <div className="olhar-experience-video-frame">
-            <SmartVideo {...videos.rayBanBruna} className="moderna-video" />
-          </div>
-          <div className="moderna-video-supports">
-            <figure>
-              <SmartVideo {...videos.rayBanM} className="moderna-video" autoPlayWhenVisible={false} />
-            </figure>
-            <figure>
-              <Image src={rayBanMImages[2].src} alt={rayBanMImages[2].alt} fill sizes="(max-width: 900px) 42vw, 220px" />
-            </figure>
-          </div>
+        <div className="video-composition">
+          <figure className="video-main"><SmartVideo {...videos.rayBanBruna} className="smart-video" /></figure>
+          <figure><SmartVideo {...videos.rayBanM} className="smart-video" autoPlayWhenVisible={false} /></figure>
+          <figure><Image src={rayBanMImages[7].src} alt={rayBanMImages[7].alt} fill sizes="(max-width: 900px) 44vw, 220px" /></figure>
         </div>
       </div>
     </section>
   );
 }
 
-function TrendsSection() {
+function TrendsAndTestimonials() {
   return (
-    <section className="section moderna-trends-section" aria-labelledby="trends-title">
-      <div className="site-shell">
-        <div className="section-heading compact">
-          <p className="eyebrow">Notícias e tendências</p>
-          <h2 id="trends-title">Conteúdo para escolher melhor.</h2>
+    <section className="section trust-section" aria-labelledby="trust-title">
+      <div className="site-shell trust-grid">
+        <div>
+          <div className="section-heading compact">
+            <p className="eyebrow">Guia rápido</p>
+            <h2 id="trust-title">Conteúdo curto para decidir melhor.</h2>
+          </div>
+          <div className="tips-list">
+            {newsTips.slice(0, 4).map((item) => (
+              <article key={item.title}>
+                <h3>{item.title}</h3>
+                <p>{item.text}</p>
+              </article>
+            ))}
+          </div>
         </div>
-        <div className="moderna-trends-grid">
-          {newsTips.map((item) => (
-            <article key={item.title}>
-              <span>Ótica Moderna</span>
-              <h3>{item.title}</h3>
-              <p>{item.text}</p>
+        <div className="review-panel" aria-label="Depoimentos reais da Ótica Moderna">
+          <span>★★★★★ Google</span>
+          {testimonials.slice(0, 3).map((testimonial) => (
+            <article key={testimonial.name}>
+              <p>“{testimonial.text}”</p>
+              <strong>{testimonial.name}</strong>
             </article>
           ))}
         </div>
@@ -413,71 +290,27 @@ function TrendsSection() {
   );
 }
 
-function TestimonialsSection() {
-  return (
-    <section className="testimonials-section moderna-testimonials-section" aria-labelledby="testimonials-title">
-      <div className="site-shell testimonials-shell">
-        <div className="section-heading testimonials-heading">
-          <p className="eyebrow">Depoimentos reais</p>
-          <h2 id="testimonials-title">Atendimento, consultoria e qualidade.</h2>
-        </div>
-        <div className="testimonials-summary">
-          <span>★★★★★</span>
-          <strong>Google</strong>
-          <small>Clientes da Ótica Moderna</small>
-        </div>
-      </div>
-      <div className="site-shell testimonials-columns-wrap">
-        <TestimonialsColumn className="testimonials-column" testimonials={testimonials.slice(0, 3)} duration={34} />
-        <TestimonialsColumn className="testimonials-column" testimonials={testimonials.slice(3)} duration={38} />
-      </div>
-      <TestimonialsMobileMarquee testimonials={testimonials} />
-    </section>
-  );
-}
-
 function LocationSection() {
   return (
-    <section id="localizacao" className="section moderna-location-section" aria-labelledby="location-title">
-      <div className="site-shell moderna-location-grid">
+    <section id="localizacao" className="section location-section" aria-labelledby="location-title">
+      <div className="site-shell location-card">
         <div className="section-heading compact">
           <p className="eyebrow">Localização</p>
-          <h2 id="location-title">Visite a Ótica Moderna em Araguaína.</h2>
-          <address>
-            <MapPin size={20} aria-hidden="true" />
-            <span>{site.displayAddress}</span>
-          </address>
-          <a href={site.mapsRouteUrl} className="button button-red" target="_blank" rel="noopener noreferrer">
-            <Navigation size={18} aria-hidden="true" />
-            Como chegar
-          </a>
+          <h2 id="location-title">Rua Florêncio Machado, Araguaína.</h2>
+          <p>{site.displayAddress}</p>
+          <div className="hero-actions">
+            <a href={site.mapsRouteUrl} className="button button-primary" target="_blank" rel="noopener noreferrer">
+              <Navigation size={18} aria-hidden="true" />
+              Como chegar
+            </a>
+            <a href={site.instagramUrl} className="button button-secondary" target="_blank" rel="noopener noreferrer">
+              <Instagram size={18} aria-hidden="true" />
+              Ver Instagram
+            </a>
+          </div>
         </div>
-        <div className="moderna-map">
+        <div className="map-frame">
           <iframe src={site.mapsEmbedUrl} title="Mapa da Ótica Moderna Araguaína" loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
-        </div>
-      </div>
-    </section>
-  );
-}
-
-function FinalCTASection() {
-  return (
-    <section className="final-section moderna-final-section" aria-labelledby="final-title">
-      <div className="site-shell final-panel">
-        <div>
-          <p className="eyebrow">Ótica Moderna Araguaína</p>
-          <h2 id="final-title">Escolha seus próximos óculos com estilo e orientação certa.</h2>
-          <p>Veja modelos no Instagram ou trace a rota para visitar a Ótica Moderna em Araguaína.</p>
-        </div>
-        <div className="final-actions">
-          <a href={site.instagramUrl} className="button button-light" target="_blank" rel="noopener noreferrer">
-            <Instagram size={18} aria-hidden="true" />
-            Ver no Instagram
-          </a>
-          <a href={site.mapsRouteUrl} className="button button-red" target="_blank" rel="noopener noreferrer">
-            <Navigation size={18} aria-hidden="true" />
-            Como chegar
-          </a>
         </div>
       </div>
     </section>

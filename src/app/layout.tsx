@@ -1,8 +1,6 @@
 import type { Metadata, Viewport } from "next";
 import { localBusinessJsonLd, site } from "@/lib/site";
 import "./globals.css";
-import "./final-polish.css";
-import "./moderna-reference.css";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
@@ -34,14 +32,7 @@ export const metadata: Metadata = {
       "Óculos de grau, solares, Ray-Ban e consultoria de imagem em Araguaína.",
     locale: "pt_BR",
     type: "website",
-    images: [
-      {
-        url: site.logoFilled,
-        width: 1200,
-        height: 1200,
-        alt: "Logo da Ótica Moderna Araguaína",
-      },
-    ],
+    images: [{ url: site.logoFilled, width: 1200, height: 1200, alt: "Logo da Ótica Moderna Araguaína" }],
   },
 };
 
@@ -51,21 +42,12 @@ export const viewport: Viewport = {
   initialScale: 1,
 };
 
-export default function RootLayout({
-  children,
-}: Readonly<{
-  children: React.ReactNode;
-}>) {
+export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="pt-BR">
       <body>
         {children}
-        <script
-          type="application/ld+json"
-          dangerouslySetInnerHTML={{
-            __html: JSON.stringify(localBusinessJsonLd),
-          }}
-        />
+        <script type="application/ld+json" dangerouslySetInnerHTML={{ __html: JSON.stringify(localBusinessJsonLd) }} />
       </body>
     </html>
   );
