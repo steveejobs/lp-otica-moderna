@@ -7,41 +7,43 @@ type SmartVideoProps = {
   poster?: string;
   label: string;
   className?: string;
-  autoPlayWhenVisible?: boolean;
 };
 
-export function SmartVideo({
-  src,
-  poster,
-  label,
-  className,
-  autoPlayWhenVisible = true,
-}: SmartVideoProps) {
+export function SmartVideo({ src, poster, label, className }: SmartVideoProps) {
   const videoRef = useRef<HTMLVideoElement>(null);
 
   useEffect(() => {
     const video = videoRef.current;
 
-    if (!video || !autoPlayWhenVisible) {
+    if (!video) {
+      return;
+    }
+
+    const reduceMotion = window.matchMedia("(prefers-reduced-motion: reduce)");
+
+    if (reduceMotion.matches) {
+      video.pause();
       return;
     }
 
     const observer = new IntersectionObserver(
       ([entry]) => {
         if (entry.isIntersecting) {
+          video.muted = true;
+          video.loop = true;
           void video.play().catch(() => undefined);
           return;
         }
 
         video.pause();
       },
-      { threshold: 0.35 },
+      { threshold: 0.32 },
     );
 
     observer.observe(video);
 
     return () => observer.disconnect();
-  }, [autoPlayWhenVisible]);
+  }, []);
 
   return (
     <video
@@ -54,7 +56,6 @@ export function SmartVideo({
       loop
       playsInline
       preload="metadata"
-      controls={!autoPlayWhenVisible}
     />
   );
 }

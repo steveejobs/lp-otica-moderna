@@ -1,6 +1,5 @@
 import Image from "next/image";
 import {
-  ArrowRight,
   BadgeCheck,
   Eye,
   Glasses,
@@ -15,7 +14,9 @@ import { Footer } from "@/components/Footer";
 import { Header } from "@/components/Header";
 import { PremiumGallery, type GalleryGroup } from "@/components/PremiumGallery";
 import { SmartVideo } from "@/components/SmartVideo";
+import { TestimonialsMarquee } from "@/components/TestimonialsMarquee";
 import {
+  brandLogos,
   frameImages,
   internalImages,
   newsTips,
@@ -43,6 +44,7 @@ const galleryGroups: GalleryGroup[] = [
     title: "Ambiente real para escolher com calma.",
     text: "Fachada, balcão, atendimento e detalhes internos em uma narrativa compacta.",
     images: [internalImages[1], internalImages[3], internalImages[5], internalImages[4]],
+    fit: "cover",
   },
   {
     id: "bruna",
@@ -51,6 +53,7 @@ const galleryGroups: GalleryGroup[] = [
     title: "Produto em primeiro plano.",
     text: "Uma coleção Ray-Ban separada da loja, com acabamento e presença visual.",
     images: rayBanBrunaImages,
+    fit: "contain",
   },
   {
     id: "rayban",
@@ -59,6 +62,7 @@ const galleryGroups: GalleryGroup[] = [
     title: "Outra curadoria Ray-Ban.",
     text: "Modelos próprios para experimentar com orientação de estilo e lente.",
     images: rayBanMImages.slice(0, 4),
+    fit: "contain",
   },
   {
     id: "armacoes",
@@ -67,6 +71,7 @@ const galleryGroups: GalleryGroup[] = [
     title: "Modelos sem misturar com loja ou Ray-Ban.",
     text: "Produtos, solares e armações organizados como vitrine editorial.",
     images: frameImages.slice(0, 4),
+    fit: "cover",
   },
 ];
 
@@ -81,8 +86,10 @@ export default function Home() {
         <GallerySection />
         <InsideStore />
         <RayBanSection />
+        <BrandsSection />
         <VideoExperience />
-        <TrendsAndTestimonials />
+        <TipsSection />
+        <TestimonialsSection />
         <LocationSection />
       </main>
       <Footer />
@@ -144,7 +151,7 @@ function ProofBar() {
 
 function GuidedChoice() {
   return (
-    <section className="section guided-section" aria-labelledby="guided-title">
+    <section id="consultoria" className="section guided-section" aria-labelledby="guided-title">
       <div className="site-shell section-head-row">
         <div className="section-heading compact">
           <p className="eyebrow">Escolha guiada</p>
@@ -239,53 +246,77 @@ function RayBanMini({ title, images }: { title: string; images: typeof rayBanBru
   );
 }
 
-function VideoExperience() {
+function BrandsSection() {
   return (
-    <section className="section video-section" aria-labelledby="video-title">
-      <div className="site-shell video-grid">
+    <section className="brands-section" aria-labelledby="brands-title">
+      <div className="site-shell brands-panel">
         <div className="section-heading compact">
-          <p className="eyebrow">Experiência em vídeo</p>
-          <h2 id="video-title">Poucos vídeos, bem encaixados.</h2>
-          <p>Ray-Ban em movimento, com carregamento leve e pausa fora da viewport.</p>
+          <p className="eyebrow">Marcas que trabalhamos</p>
+          <h2 id="brands-title">Seleção discreta, curada pela loja.</h2>
         </div>
-        <div className="video-composition">
-          <figure className="video-main"><SmartVideo {...videos.rayBanBruna} className="smart-video" /></figure>
-          <figure><SmartVideo {...videos.rayBanM} className="smart-video" autoPlayWhenVisible={false} /></figure>
-          <figure><Image src={rayBanMImages[7].src} alt={rayBanMImages[7].alt} fill sizes="(max-width: 900px) 44vw, 220px" /></figure>
+        <div className="brands-strip">
+          {brandLogos.map((logo) => (
+            <figure key={logo.src} className={logo.featured ? "is-featured" : ""}>
+              <Image src={logo.src} alt={logo.alt} width={180} height={76} />
+            </figure>
+          ))}
         </div>
       </div>
     </section>
   );
 }
 
-function TrendsAndTestimonials() {
+function VideoExperience() {
   return (
-    <section className="section trust-section" aria-labelledby="trust-title">
-      <div className="site-shell trust-grid">
-        <div>
-          <div className="section-heading compact">
-            <p className="eyebrow">Guia rápido</p>
-            <h2 id="trust-title">Conteúdo curto para decidir melhor.</h2>
-          </div>
-          <div className="tips-list">
-            {newsTips.slice(0, 4).map((item) => (
-              <article key={item.title}>
-                <h3>{item.title}</h3>
-                <p>{item.text}</p>
-              </article>
-            ))}
-          </div>
+    <section className="section video-section" aria-labelledby="video-title">
+      <div className="site-shell video-grid">
+        <div className="section-heading compact">
+          <p className="eyebrow">Experiência em vídeo</p>
+          <h2 id="video-title">Vídeos rodando juntos, só quando visíveis.</h2>
+          <p>Todos sem áudio, em loop, com pausa automática fora da viewport.</p>
         </div>
-        <div className="review-panel" aria-label="Depoimentos reais da Ótica Moderna">
-          <span>★★★★★ Google</span>
-          {testimonials.slice(0, 3).map((testimonial) => (
-            <article key={testimonial.name}>
-              <p>“{testimonial.text}”</p>
-              <strong>{testimonial.name}</strong>
-            </article>
-          ))}
+        <div className="video-composition">
+          <figure className="video-main"><SmartVideo {...videos.rayBanBruna} className="smart-video" /></figure>
+          <figure><SmartVideo {...videos.rayBanM} className="smart-video" /></figure>
+          <figure><SmartVideo {...videos.rayBanBruna} className="smart-video" /></figure>
         </div>
       </div>
+    </section>
+  );
+}
+
+function TipsSection() {
+  return (
+    <section className="section tips-section" aria-labelledby="tips-title">
+      <div className="site-shell section-head-row">
+        <div className="section-heading compact">
+          <p className="eyebrow">Guia rápido</p>
+          <h2 id="tips-title">Conteúdo curto para decidir melhor.</h2>
+        </div>
+      </div>
+      <div className="site-shell tips-list">
+        {newsTips.slice(0, 4).map((item) => (
+          <article key={item.title}>
+            <h3>{item.title}</h3>
+            <p>{item.text}</p>
+          </article>
+        ))}
+      </div>
+    </section>
+  );
+}
+
+function TestimonialsSection() {
+  return (
+    <section className="section testimonials-section" aria-labelledby="testimonials-title">
+      <div className="site-shell section-head-row">
+        <div className="section-heading compact">
+          <p className="eyebrow">Depoimentos reais</p>
+          <h2 id="testimonials-title">Atendimento, consultoria e qualidade.</h2>
+        </div>
+        <p>Duas linhas contínuas, compactas e acessíveis, inspiradas no ritmo original da referência.</p>
+      </div>
+      <TestimonialsMarquee testimonials={testimonials} />
     </section>
   );
 }

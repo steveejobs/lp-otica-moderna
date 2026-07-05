@@ -11,7 +11,6 @@ import {
 } from "lucide-react";
 import { SmartVideo } from "@/components/SmartVideo";
 import {
-  frameImages,
   internalImages,
   rayBanBrunaImages,
   rayBanMImages,
@@ -27,9 +26,8 @@ const links = [
   { label: "Site completo", href: "/", icon: ChevronRight, variant: "ghost" },
 ] as const;
 
-const topShowcase = [frameImages[4], rayBanBrunaImages[1], internalImages[7], frameImages[1], rayBanMImages[8], internalImages[9]];
-const secondaryShowcase = [internalImages[4], frameImages[2], rayBanBrunaImages[3], internalImages[6], rayBanMImages[9]];
-const rayBanMini = [rayBanBrunaImages[0], rayBanBrunaImages[2], rayBanMImages[4]];
+const storeGallery = [internalImages[2], internalImages[0], internalImages[1], internalImages[3], internalImages[5], internalImages[6]];
+const rayBanGallery = [rayBanBrunaImages[1], rayBanBrunaImages[2], rayBanBrunaImages[3], rayBanMImages[4], rayBanMImages[5], rayBanMImages[8]];
 
 export const metadata: Metadata = {
   title: "Ótica Moderna Araguaína | Instagram",
@@ -57,7 +55,7 @@ export default function InstagramBioPage() {
             <span>Parcelamos em até 10x</span>
             <span>Rua Florêncio Machado</span>
           </div>
-          <MarqueeGallery images={topShowcase} label="Vitrine principal da Ótica Moderna" />
+          <StoreMarquee images={storeGallery} />
         </div>
       </section>
 
@@ -82,34 +80,23 @@ export default function InstagramBioPage() {
         })}
       </section>
 
-      <section className="insta-feature insta-shell" aria-labelledby="inside-title">
+      <section className="insta-feature insta-shell" aria-labelledby="rayban-gallery-title">
         <div className="insta-section-title">
-          <h2 id="inside-title">Veja por dentro</h2>
-          <Link href="/#sobre">loja</Link>
+          <h2 id="rayban-gallery-title">Ray-Ban em destaque</h2>
+          <Link href="/#rayban">ver seção</Link>
         </div>
-        <OffsetGallery images={secondaryShowcase} />
-      </section>
-
-      <section className="insta-feature insta-shell" aria-labelledby="rayban-title">
-        <div className="insta-section-title">
-          <h2 id="rayban-title">Ray-Ban compacto</h2>
-          <Link href="/#rayban">ver</Link>
-        </div>
-        <div className="insta-rayban-row">
-          {rayBanMini.map((image) => (
-            <figure key={image.src}><Image src={image.src} alt={image.alt} fill sizes="30vw" /></figure>
-          ))}
-        </div>
+        <RayBanGallery images={rayBanGallery} />
       </section>
 
       <section className="insta-feature insta-shell" aria-labelledby="videos-title">
         <div className="insta-section-title">
           <h2 id="videos-title">Vídeos</h2>
-          <span>Ray-Ban em movimento</span>
+          <span>sem áudio · em loop</span>
         </div>
-        <div className="insta-video-grid">
+        <div className="insta-video-grid is-three">
           <figure className="is-main"><SmartVideo {...videos.rayBanBruna} className="smart-video" /></figure>
-          <figure><SmartVideo {...videos.rayBanM} className="smart-video" autoPlayWhenVisible={false} /></figure>
+          <figure><SmartVideo {...videos.rayBanM} className="smart-video" /></figure>
+          <figure><SmartVideo {...videos.rayBanBruna} className="smart-video" /></figure>
         </div>
       </section>
 
@@ -122,7 +109,7 @@ export default function InstagramBioPage() {
           {testimonials.slice(0, 3).map((testimonial) => (
             <article key={testimonial.name}>
               <span>★★★★★</span>
-              <p>“{testimonial.text}”</p>
+              <p>{testimonial.text}</p>
               <strong>{testimonial.name}</strong>
             </article>
           ))}
@@ -147,13 +134,13 @@ export default function InstagramBioPage() {
   );
 }
 
-function MarqueeGallery({ images, label }: { images: { src: string; alt: string }[]; label: string }) {
+function StoreMarquee({ images }: { images: { src: string; alt: string }[] }) {
   return (
-    <div className="insta-marquee" aria-label={label}>
+    <div className="insta-marquee is-store" aria-label="Galeria da loja Ótica Moderna">
       <div>
         {[...images, ...images].map((image, index) => (
           <figure key={`${image.src}-${index}`} aria-hidden={index >= images.length}>
-            <Image src={image.src} alt={index < images.length ? image.alt : ""} fill sizes="(max-width: 560px) 43vw, 176px" priority={index < 2} />
+            <Image src={image.src} alt={index < images.length ? image.alt : ""} fill sizes="(max-width: 560px) 40vw, 164px" priority={index < 2} />
           </figure>
         ))}
       </div>
@@ -161,12 +148,12 @@ function MarqueeGallery({ images, label }: { images: { src: string; alt: string 
   );
 }
 
-function OffsetGallery({ images }: { images: { src: string; alt: string }[] }) {
+function RayBanGallery({ images }: { images: { src: string; alt: string }[] }) {
   return (
-    <div className="insta-offset-gallery">
+    <div className="insta-rayban-gallery" aria-label="Galeria Ray-Ban da Ótica Moderna">
       {images.map((image, index) => (
         <figure className={index === 0 ? "is-wide" : ""} key={image.src}>
-          <Image src={image.src} alt={image.alt} fill sizes="(max-width: 560px) 48vw, 180px" />
+          <Image src={image.src} alt={image.alt} fill sizes="(max-width: 560px) 48vw, 210px" />
         </figure>
       ))}
     </div>

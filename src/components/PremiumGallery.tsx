@@ -15,11 +15,13 @@ export type GalleryGroup = {
   title: string;
   text: string;
   images: GalleryImage[];
+  fit?: "cover" | "contain";
 };
 
 export function PremiumGallery({ groups }: { groups: GalleryGroup[] }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const active = groups[activeIndex];
+  const fit = active.fit ?? "cover";
 
   useEffect(() => {
     const timer = window.setInterval(() => {
@@ -46,7 +48,7 @@ export function PremiumGallery({ groups }: { groups: GalleryGroup[] }) {
         ))}
       </div>
 
-      <article className="premium-gallery-panel" aria-live="polite">
+      <article className={`premium-gallery-panel is-${active.id} fit-${fit}`} aria-live="polite">
         <div className="premium-gallery-copy">
           <span>{active.eyebrow}</span>
           <h3>{active.title}</h3>

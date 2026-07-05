@@ -304,3 +304,290 @@ img { display: block; max-width: 100%; }
   .review-panel article:nth-of-type(3) { display: none; }
   .premium-hero-media { min-height: 340px; }
 }
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  overflow: hidden;
+  clip: rect(0, 0, 0, 0);
+  white-space: nowrap;
+  border: 0;
+}
+
+.premium-logo,
+.insta-logo,
+.brand-mark img,
+.footer-brand img {
+  border-radius: 8px;
+  background: var(--blue);
+}
+
+.premium-gallery-panel.fit-contain .premium-gallery-main img,
+.premium-gallery-panel.fit-contain .premium-gallery-strip img,
+.rayban-card img,
+.insta-rayban-gallery img {
+  object-fit: contain;
+  object-position: center;
+  padding: 8px;
+  background: linear-gradient(180deg, #ffffff, #f7f8ff);
+}
+
+.brands-section {
+  padding: clamp(34px, 4vw, 54px) 0;
+  background: #fff;
+}
+
+.brands-panel {
+  display: grid;
+  grid-template-columns: minmax(220px, 0.46fr) minmax(0, 1fr);
+  gap: clamp(18px, 3vw, 36px);
+  align-items: center;
+  border-block: 1px solid var(--line);
+  padding-block: clamp(20px, 3vw, 30px);
+}
+
+.brands-panel .section-heading h2 {
+  font-size: clamp(1.28rem, 2vw, 2rem);
+}
+
+.brands-strip {
+  display: grid;
+  grid-template-columns: repeat(6, minmax(0, 1fr));
+  gap: 10px;
+}
+
+.brands-strip figure {
+  display: grid;
+  min-height: 86px;
+  place-items: center;
+  margin: 0;
+  border: 1px solid rgba(48, 48, 144, 0.08);
+  border-radius: var(--radius);
+  background: rgba(247, 248, 255, 0.72);
+  transition: transform 220ms var(--ease), background 220ms var(--ease), border-color 220ms var(--ease);
+}
+
+.brands-strip img {
+  max-width: 78%;
+  max-height: 52px;
+  object-fit: contain;
+  filter: grayscale(1) saturate(0) contrast(0.9) opacity(0.62);
+  transition: filter 220ms var(--ease), transform 220ms var(--ease);
+}
+
+.brands-strip figure:hover,
+.brands-strip figure:focus-within {
+  border-color: rgba(48, 48, 144, 0.18);
+  background: #fff;
+  transform: translateY(-2px);
+}
+
+.brands-strip figure:hover img,
+.brands-strip figure:focus-within img {
+  filter: none;
+  transform: scale(1.035);
+}
+
+.testimonials-section {
+  overflow: hidden;
+  background: linear-gradient(180deg, var(--paper) 0%, #fff 100%);
+}
+
+.testimonial-marquee {
+  display: grid;
+  gap: 10px;
+}
+
+.testimonial-row {
+  overflow: hidden;
+  mask-image: linear-gradient(90deg, transparent 0, #000 8%, #000 92%, transparent 100%);
+}
+
+.testimonial-track {
+  display: flex;
+  width: max-content;
+  gap: 10px;
+  animation: testimonialMove 46s linear infinite;
+}
+
+.testimonial-row.is-reverse .testimonial-track {
+  animation-name: testimonialMoveReverse;
+  animation-duration: 52s;
+}
+
+.testimonial-set {
+  display: flex;
+  gap: 10px;
+}
+
+.testimonial-card {
+  flex: 0 0 clamp(250px, 24vw, 330px);
+  min-height: 148px;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  padding: 14px;
+  background: rgba(255, 255, 255, 0.92);
+  box-shadow: var(--shadow-soft);
+}
+
+.testimonial-card span {
+  color: var(--yellow);
+  font-size: 0.8rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-shadow: 0 1px 0 rgba(48, 48, 144, 0.22);
+}
+
+.testimonial-card p {
+  display: -webkit-box;
+  min-height: 58px;
+  margin: 9px 0 10px;
+  overflow: hidden;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 3;
+  color: var(--blue-dark);
+  font-size: 0.92rem;
+  line-height: 1.4;
+}
+
+.testimonial-card strong,
+.testimonial-card small {
+  display: block;
+}
+
+.testimonial-card strong {
+  color: var(--ink);
+  font-size: 0.92rem;
+}
+
+.testimonial-card small {
+  margin-top: 2px;
+  color: var(--muted);
+  font-size: 0.78rem;
+}
+
+@keyframes testimonialMove {
+  to { transform: translateX(calc(-50% - 5px)); }
+}
+
+@keyframes testimonialMoveReverse {
+  from { transform: translateX(calc(-50% - 5px)); }
+  to { transform: translateX(0); }
+}
+
+.insta-marquee.is-store {
+  padding: 9px 0;
+}
+
+.insta-marquee.is-store figure {
+  flex-basis: 136px;
+  aspect-ratio: 1.22 / 1;
+}
+
+.insta-marquee.is-store img {
+  object-fit: cover;
+  object-position: center;
+}
+
+.insta-rayban-gallery {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  grid-auto-rows: 112px;
+  gap: 8px;
+  margin-left: -16px;
+}
+
+.insta-rayban-gallery figure {
+  position: relative;
+  margin: 0;
+  overflow: hidden;
+  border: 1px solid var(--line);
+  border-radius: var(--radius);
+  background: #fff;
+  box-shadow: var(--shadow-soft);
+}
+
+.insta-rayban-gallery .is-wide {
+  grid-column: span 2;
+  grid-row: span 2;
+}
+
+.insta-video-grid.is-three {
+  grid-template-columns: 1.18fr 0.82fr;
+  grid-template-rows: repeat(2, minmax(150px, 1fr));
+}
+
+.insta-video-grid.is-three .is-main {
+  grid-row: 1 / -1;
+  min-height: 348px;
+}
+
+.insta-video-grid.is-three figure:not(.is-main) {
+  min-height: 170px;
+}
+
+.video-composition figure video,
+.insta-video-grid figure video {
+  background: #10133f;
+}
+
+@media (max-width: 980px) {
+  .brands-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .brands-strip {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 640px) {
+  .brands-strip {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .testimonial-card {
+    flex-basis: 270px;
+    min-height: 142px;
+  }
+
+  .testimonial-track {
+    animation-duration: 42s;
+  }
+
+  .testimonial-row.is-reverse .testimonial-track {
+    animation-duration: 48s;
+  }
+
+  .insta-marquee.is-store figure {
+    flex-basis: 132px;
+  }
+
+  .insta-rayban-gallery {
+    grid-auto-rows: 96px;
+    margin-left: -10px;
+  }
+
+  .insta-video-grid.is-three {
+    grid-template-columns: 1fr;
+    grid-template-rows: auto;
+  }
+
+  .insta-video-grid.is-three .is-main,
+  .insta-video-grid.is-three figure:not(.is-main) {
+    grid-row: auto;
+    min-height: 340px;
+  }
+}
+
+@media (max-width: 380px) {
+  .insta-rayban-gallery {
+    grid-auto-rows: 88px;
+  }
+
+  .insta-video-grid.is-three .is-main,
+  .insta-video-grid.is-three figure:not(.is-main) {
+    min-height: 318px;
+  }
+}

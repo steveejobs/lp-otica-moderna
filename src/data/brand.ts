@@ -30,7 +30,8 @@ export const site = {
   mapsRouteUrl: "https://maps.app.goo.gl/8rAjyZD5fDfzyhz69",
   mapsEmbedUrl:
     "https://www.google.com/maps?q=Rua%20Flor%C3%AAncio%20Machado%2C%20Aragua%C3%ADna%20-%20TO%2C%2077803-020&output=embed",
-  logoIcon: `${assetBase}/logo-completa-sem-fundo.png`,
+  logoIcon: `${assetBase}/logo-completa-com-fundo.png`,
+  logoTransparent: `${assetBase}/logo-completa-sem-fundo.png`,
   logoFilled: `${assetBase}/logo-completa-com-fundo.png`,
   favicon: `${assetBase}/favicon.png`,
   heroImage: `${assetBase}/fachada.png`,
@@ -124,59 +125,26 @@ export type Testimonial = {
 };
 
 export const testimonials: Testimonial[] = [
-  {
-    name: "Henrique Gomes",
-    text: "Melhor atendimento que eu já vi na vida e o preço excelente. Muito satisfeito com o Ray-Ban.",
-    source: "Google",
-  },
-  {
-    name: "Bruna Alves",
-    text: "Atendimento excelente, desde o virtual ao presencial. Gostei bastante do ambiente e peças de qualidade.",
-    source: "Google",
-  },
-  {
-    name: "Lindaura Janes Cunha",
-    text: "Fiz meu óculos de grau com blue protection, anti-reflexo e ficou maravilhoso.",
-    source: "Google",
-  },
-  {
-    name: "Mayara Freitas",
-    text: "Melhor atendimento da cidade! Variedade em lentes e armações de excelente qualidade. Possui especialista em consultoria de imagem especializada em óculos.",
-    source: "Google",
-  },
-  {
-    name: "Fabiana Dias de Sousa",
-    text: "Ambiente aconchegante, óculos com designs modernos para todos os estilos. A equipe ajuda a encontrar o par perfeito.",
-    source: "Google",
-  },
-  {
-    name: "Tiago Gomes Bezerra",
-    text: "Melhor ótica de Araguaína. Consultoria de imagem completa e qualidade excelente nas lentes e armações.",
-    source: "Google",
-  },
+  { name: "Henrique Gomes", text: "Melhor atendimento que eu já vi na vida e o preço excelente. Muito satisfeito com o Ray-Ban.", source: "Google" },
+  { name: "Bruna Alves", text: "Atendimento excelente, desde o virtual ao presencial. Gostei bastante do ambiente e peças de qualidade.", source: "Google" },
+  { name: "Lindaura Janes Cunha", text: "Fiz meu óculos de grau com blue protection, anti-reflexo e ficou maravilhoso.", source: "Google" },
+  { name: "Mayara Freitas", text: "Melhor atendimento da cidade! Variedade em lentes e armações de excelente qualidade.", source: "Google" },
+  { name: "Fabiana Dias de Sousa", text: "Ambiente aconchegante, óculos com designs modernos para todos os estilos.", source: "Google" },
+  { name: "Tiago Gomes Bezerra", text: "Melhor ótica de Araguaína. Consultoria de imagem completa e qualidade excelente.", source: "Google" },
+  { name: "Bianca Rogéria", text: "Avaliação 5 estrelas no Google para a Ótica Moderna.", source: "Google" },
+  { name: "Thays Sandy", text: "Avaliação 5 estrelas no Google para a Ótica Moderna.", source: "Google" },
+  { name: "Edevaldo Santos", text: "Avaliação 5 estrelas no Google para a Ótica Moderna.", source: "Google" },
+  { name: "Dirceu Fernandes", text: "Avaliação 5 estrelas no Google para a Ótica Moderna.", source: "Google" },
+  { name: "Natanael Laurindo", text: "Avaliação 5 estrelas no Google para a Ótica Moderna.", source: "Google" },
+  { name: "Jéssica Freitas", text: "Avaliação 5 estrelas no Google para a Ótica Moderna.", source: "Google" },
 ];
 
 export const newsTips = [
-  {
-    title: "Como escolher armação pelo formato do rosto",
-    text: "A consultoria ajuda a equilibrar proporções, presença e conforto para o uso diário.",
-  },
-  {
-    title: "Consultoria de imagem para óculos",
-    text: "A armação certa conversa com estilo pessoal, rotina e sensação que você quer transmitir.",
-  },
-  {
-    title: "Blue protection no óculos de grau",
-    text: "Tratamentos de lente podem melhorar o conforto em rotinas com telas e iluminação intensa.",
-  },
-  {
-    title: "Ray-Ban para grau e sol",
-    text: "Modelos clássicos ganham força quando combinam acabamento, lente adequada e ajuste correto.",
-  },
-  {
-    title: "Óculos solares também são proteção",
-    text: "Além do estilo, lentes solares de qualidade ajudam no conforto visual em dias de muita luz.",
-  },
+  { title: "Como escolher armação pelo formato do rosto", text: "A consultoria ajuda a equilibrar proporções, presença e conforto para o uso diário." },
+  { title: "Consultoria de imagem para óculos", text: "A armação certa conversa com estilo pessoal, rotina e sensação que você quer transmitir." },
+  { title: "Blue protection no óculos de grau", text: "Tratamentos de lente podem melhorar o conforto em rotinas com telas e iluminação intensa." },
+  { title: "Ray-Ban para grau e sol", text: "Modelos clássicos ganham força quando combinam acabamento, lente adequada e ajuste correto." },
+  { title: "Óculos solares também são proteção", text: "Além do estilo, lentes solares de qualidade ajudam no conforto visual em dias de muita luz." },
 ];
 
 export const testimonialsSummary = {
