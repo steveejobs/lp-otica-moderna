@@ -1,0 +1,13 @@
+.git
+.next
+node_modules
+
+# Arquivos locais de auditoria/rascunho
+.tmp
+*.tsbuildinfo
+otica-moderna-*.json
+otica-moderna-*.png
+
+# Assets brutos duplicados; os arquivos publicados ficam em public/assets/otica-moderna
+galeria otica moderna
+.vercel
