@@ -1,12 +1,13 @@
-﻿export const brandName = "Ótica Moderna Araguaína";
+export const brandName = "Ótica Moderna Araguaína";
 
 export const brandColors = {
-  blue: "#2D3192",
-  yellow: "#FFE700",
+  blue: "#303090",
+  blueDark: "#20205F",
+  yellow: "#FFF000",
   white: "#FFFFFF",
   paper: "#F7F8FC",
-  ink: "#12152F",
-  muted: "#62677D",
+  ink: "#111436",
+  muted: "#5F6380",
   rayBan: "#D71920",
 };
 
@@ -39,36 +40,39 @@ export const site = {
 };
 
 export const navItems = [
-  { label: "Sobre", href: "#sobre" },
-  { label: "Consultoria", href: "#consultoria" },
-  { label: "Galeria", href: "#galeria" },
+  { label: "Escolha guiada", href: "#consultoria" },
+  { label: "Coleções", href: "#galeria" },
+  { label: "Por dentro", href: "#sobre" },
   { label: "Ray-Ban", href: "#rayban" },
   { label: "Localização", href: "#localizacao" },
 ];
 
 export const proofItems = [
-  "Consultoria de imagem para óculos",
-  "Parcelamento em até 10x",
-  "Rua Florêncio Machado · Araguaína",
-  "Ray-Ban e modelos selecionados",
+  { title: "Consultoria de imagem", detail: "Escolha guiada para rosto, estilo e rotina" },
+  { title: "Parcelamos em até 10x", detail: "Condições para óculos, lentes e armações" },
+  { title: "Ray-Ban", detail: "Coleções selecionadas na Ótica Moderna" },
+  { title: "Rua Florêncio Machado", detail: "Atendimento presencial em Araguaína" },
 ];
 
 export const internalImages = [
   { src: `${assetBase}/interno-01.png`, alt: "Interior da Ótica Moderna Araguaína" },
   { src: `${assetBase}/interno-02.png`, alt: "Ambiente interno da Ótica Moderna" },
   { src: `${assetBase}/fachada.png`, alt: "Fachada da Ótica Moderna Araguaína" },
-  { src: `${assetBase}/loja-galeria-01.jpg`, alt: "Detalhe da loja Ótica Moderna" },
-  { src: `${assetBase}/loja-galeria-02.jpg`, alt: "Atendimento na Ótica Moderna" },
-  { src: `${assetBase}/loja-galeria-03.jpg`, alt: "Vitrine de óculos da Ótica Moderna" },
-  { src: `${assetBase}/loja-galeria-04.jpg`, alt: "Armações expostas na loja" },
-  { src: `${assetBase}/loja-galeria-05.jpg`, alt: "Balcão e produtos da Ótica Moderna" },
-  { src: `${assetBase}/loja-galeria-06.jpg`, alt: "Experiência presencial na Ótica Moderna" },
-  { src: `${assetBase}/loja-galeria-07.jpg`, alt: "Detalhes reais da loja" },
-  { src: `${assetBase}/loja-galeria-08.jpg`, alt: "Seleção de armações da loja" },
-  { src: `${assetBase}/loja-galeria-09.jpg`, alt: "Ambiente de escolha de óculos" },
-  { src: `${assetBase}/loja-galeria-10.jpg`, alt: "Produtos e atendimento da Ótica Moderna" },
-  { src: `${assetBase}/loja-galeria-11.jpg`, alt: "Mostruário da Ótica Moderna" },
-  { src: `${assetBase}/loja-galeria-12.jpg`, alt: "Detalhe de vitrine da loja" },
+  { src: `${assetBase}/loja-galeria-01.jpg`, alt: "Atendimento dentro da Ótica Moderna" },
+  { src: `${assetBase}/loja-galeria-02.jpg`, alt: "Área de atendimento da Ótica Moderna" },
+  { src: `${assetBase}/loja-galeria-05.jpg`, alt: "Balcão da Ótica Moderna" },
+  { src: `${assetBase}/loja-galeria-06.jpg`, alt: "Ambiente real da loja Ótica Moderna" },
+  { src: `${assetBase}/loja-galeria-09.jpg`, alt: "Espaço de escolha de óculos na Ótica Moderna" },
+  { src: `${assetBase}/loja-galeria-10.jpg`, alt: "Produtos e atendimento na Ótica Moderna" },
+  { src: `${assetBase}/loja-galeria-12.jpg`, alt: "Detalhe interno da Ótica Moderna" },
+];
+
+export const frameImages = [
+  { src: `${assetBase}/loja-galeria-03.jpg`, alt: "Vitrine de armações e solares da Ótica Moderna" },
+  { src: `${assetBase}/loja-galeria-04.jpg`, alt: "Armações expostas na Ótica Moderna" },
+  { src: `${assetBase}/loja-galeria-07.jpg`, alt: "Modelos de óculos selecionados" },
+  { src: `${assetBase}/loja-galeria-08.jpg`, alt: "Seleção de armações da Ótica Moderna" },
+  { src: `${assetBase}/loja-galeria-11.jpg`, alt: "Mostruário de óculos da Ótica Moderna" },
 ];
 
 export const rayBanBrunaImages = [
@@ -79,14 +83,14 @@ export const rayBanBrunaImages = [
 ];
 
 export const rayBanMImages = [
-  { src: `${assetBase}/rayban-m-01.jpg`, alt: "Coleção Ray-Ban M na Ótica Moderna" },
-  { src: `${assetBase}/rayban-m-02.jpg`, alt: "Modelo Ray-Ban M" },
-  { src: `${assetBase}/rayban-m-03.jpg`, alt: "Ray-Ban M com acabamento premium" },
-  { src: `${assetBase}/rayban-m-04.jpg`, alt: "Detalhe de armação Ray-Ban M" },
-  { src: `${assetBase}/rayban-m-05.jpg`, alt: "Óculos Ray-Ban M" },
-  { src: `${assetBase}/rayban-m-06.jpg`, alt: "Produto Ray-Ban M" },
-  { src: `${assetBase}/rayban-m-07.jpg`, alt: "Vitrine Ray-Ban M" },
-  { src: `${assetBase}/rayban-m-08.jpg`, alt: "Modelo selecionado Ray-Ban" },
+  { src: `${assetBase}/rayban-m-01.jpg`, alt: "Outra coleção Ray-Ban na Ótica Moderna" },
+  { src: `${assetBase}/rayban-m-02.jpg`, alt: "Modelo Ray-Ban selecionado" },
+  { src: `${assetBase}/rayban-m-03.jpg`, alt: "Ray-Ban com acabamento premium" },
+  { src: `${assetBase}/rayban-m-04.jpg`, alt: "Detalhe de armação Ray-Ban" },
+  { src: `${assetBase}/rayban-m-05.jpg`, alt: "Óculos Ray-Ban em destaque" },
+  { src: `${assetBase}/rayban-m-06.jpg`, alt: "Produto Ray-Ban da Ótica Moderna" },
+  { src: `${assetBase}/rayban-m-07.jpg`, alt: "Vitrine Ray-Ban" },
+  { src: `${assetBase}/rayban-m-08.jpg`, alt: "Modelo Ray-Ban selecionado" },
   { src: `${assetBase}/rayban-m-09.jpg`, alt: "Detalhe Ray-Ban na Ótica Moderna" },
   { src: `${assetBase}/rayban-m-10.jpg`, alt: "Coleção Ray-Ban selecionada" },
 ];
@@ -100,7 +104,7 @@ export const videos = {
   rayBanM: {
     src: `${assetBase}/rayban-m-01.mp4`,
     poster: `${assetBase}/rayban-m-03.jpg`,
-    label: "Vídeo editorial Ray-Ban M na Ótica Moderna",
+    label: "Vídeo editorial de outra coleção Ray-Ban na Ótica Moderna",
   },
 };
 
@@ -150,47 +154,31 @@ export const testimonials: Testimonial[] = [
     text: "Melhor ótica de Araguaína. Consultoria de imagem completa e qualidade excelente nas lentes e armações.",
     source: "Google",
   },
-  {
-    name: "Rita Costa",
-    text: "Meu óculos ficou pronto em uma semana. Ambiente muito agradável e bastante opções de armações e óculos de sol.",
-    source: "Google",
-  },
-  {
-    name: "Transloc Adm",
-    text: "Ambiente agradável, com atendimento claro e disposição para tirar todas as dúvidas.",
-    source: "Google",
-  },
 ];
 
 export const newsTips = [
   {
     title: "Como escolher armação pelo formato do rosto",
-    text: "A consultoria ajuda a equilibrar proporções, estilo pessoal e conforto para o uso diário.",
+    text: "A consultoria ajuda a equilibrar proporções, presença e conforto para o uso diário.",
+  },
+  {
+    title: "Consultoria de imagem para óculos",
+    text: "A armação certa conversa com estilo pessoal, rotina e sensação que você quer transmitir.",
   },
   {
     title: "Blue protection no óculos de grau",
-    text: "Lentes com tratamentos certos podem melhorar o conforto em rotinas com telas e iluminação intensa.",
+    text: "Tratamentos de lente podem melhorar o conforto em rotinas com telas e iluminação intensa.",
   },
   {
     title: "Ray-Ban para grau e sol",
     text: "Modelos clássicos ganham força quando combinam acabamento, lente adequada e ajuste correto.",
   },
   {
-    title: "Cuidados para preservar suas lentes",
-    text: "Limpeza correta, estojo e manutenção periódica mantêm nitidez e aumentam a vida útil dos óculos.",
-  },
-  {
-    title: "Óculos de sol também são proteção",
+    title: "Óculos solares também são proteção",
     text: "Além do estilo, lentes solares de qualidade ajudam no conforto visual em dias de muita luz.",
-  },
-  {
-    title: "Tendências sem abrir mão do seu estilo",
-    text: "O melhor modelo é o que conversa com sua imagem, sua rotina e a sensação que você quer transmitir.",
   },
 ];
 
 export const testimonialsSummary = {
   source: "Google",
 };
-
-

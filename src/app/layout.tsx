@@ -2,6 +2,7 @@ import type { Metadata, Viewport } from "next";
 import { localBusinessJsonLd, site } from "@/lib/site";
 import "./globals.css";
 import "./final-polish.css";
+import "./moderna-reference.css";
 
 const siteUrl =
   process.env.NEXT_PUBLIC_SITE_URL ??
@@ -45,7 +46,7 @@ export const metadata: Metadata = {
 };
 
 export const viewport: Viewport = {
-  themeColor: "#2D3192",
+  themeColor: "#303090",
   width: "device-width",
   initialScale: 1,
 };
@@ -69,4 +70,3 @@ export default function RootLayout({
     </html>
   );
 }
-

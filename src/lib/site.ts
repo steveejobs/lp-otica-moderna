@@ -1,9 +1,10 @@
-﻿import { site } from "@/data/brand";
+import { site } from "@/data/brand";
 
 export {
   brandColors,
   brandLogos,
   brandName,
+  frameImages,
   internalImages,
   navItems,
   newsTips,
