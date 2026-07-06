@@ -67,7 +67,7 @@ export function PremiumGallery({ groups }: { groups: GalleryGroup[] }) {
             />
           </figure>
           <div className="premium-gallery-strip">
-            {active.images.slice(1, 4).map((image) => (
+            {active.images.slice(1, 5).map((image) => (
               <figure key={image.src}>
                 <Image src={image.src} alt={image.alt} fill sizes="(max-width: 760px) 29vw, 14vw" />
               </figure>

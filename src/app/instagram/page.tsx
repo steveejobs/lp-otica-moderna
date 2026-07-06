@@ -90,13 +90,13 @@ export default function InstagramBioPage() {
           <Link href="/#rayban">ver seção</Link>
         </div>
         <div className="insta-rayban-groups">
-          <article>
-            <h3>Ray-Ban Bruna</h3>
-            <RayBanGallery images={instagramRayBanBruna} label="Galeria Ray-Ban Bruna" />
+          <article aria-label="Primeira seleção Ray-Ban">
+            <div className="insta-gallery-label-space" aria-hidden="true" />
+            <RayBanGallery images={instagramRayBanBruna} label="Primeira seleção de produtos Ray-Ban" />
           </article>
-          <article>
-            <h3>Outras campanhas Ray-Ban</h3>
-            <RayBanGallery images={instagramRayBanOther} label="Outras campanhas Ray-Ban" />
+          <article aria-label="Segunda seleção Ray-Ban">
+            <div className="insta-gallery-label-space" aria-hidden="true" />
+            <RayBanGallery images={instagramRayBanOther} label="Segunda seleção de produtos Ray-Ban" />
           </article>
         </div>
       </section>

@@ -126,7 +126,7 @@ img { display: block; max-width: 100%; }
 }
 .premium-gallery-panel:is(.is-bruna, .is-rayban) .premium-gallery-copy { align-content: center; }
 .premium-gallery-panel:is(.is-bruna, .is-rayban) .premium-gallery-media { grid-template-columns: minmax(0, 1fr) minmax(210px, .34fr); }
-.premium-gallery-panel:is(.is-bruna, .is-rayban) .premium-gallery-strip { grid-template-rows: repeat(2, minmax(0, 1fr)); }
+.premium-gallery-panel:is(.is-bruna, .is-rayban) .premium-gallery-strip { grid-template-rows: repeat(4, minmax(0, 1fr)); }
 .premium-gallery-brand { width: min(150px, 100%); height: auto; margin-bottom: 22px; border-radius: var(--radius); }
 .premium-gallery-panel.is-bruna .premium-gallery-media { animation: rayBanBrunaReveal 420ms var(--ease); }
 .premium-gallery-panel.is-rayban .premium-gallery-media { animation: rayBanCollectionReveal 420ms var(--ease); }
@@ -140,6 +140,12 @@ img { display: block; max-width: 100%; }
 .inside-media img { object-fit: cover; }
 .inside-main { grid-row: 1 / -1; }
 .inside-grid .button { margin-top: 20px; }
+
+.rayban-section { background: linear-gradient(180deg, var(--paper) 0%, #fff 100%); }
+.rayban-editorial { display: grid; grid-template-columns: minmax(0, 1.22fr) repeat(2, minmax(0, .61fr)); grid-template-rows: repeat(2, minmax(240px, 1fr)); gap: 10px; min-height: 560px; }
+.rayban-editorial figure { position: relative; overflow: hidden; margin: 0; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow-soft); }
+.rayban-editorial .rayban-editorial-main { grid-row: 1 / -1; }
+.rayban-editorial img { object-fit: contain; object-position: center; padding: 6px; background: linear-gradient(180deg, #fff, #f7f8ff); }
 
 .video-section { background: #fff; }
 .video-grid { display: grid; grid-template-columns: minmax(280px,.78fr) minmax(0,1.22fr); gap: clamp(22px, 4vw, 52px); align-items: center; }
@@ -155,6 +161,12 @@ img { display: block; max-width: 100%; }
 .tips-list article { padding: 18px; }
 .tips-list h3 { margin: 0 0 8px; font-size: 1.02rem; line-height: 1.18; }
 .tips-list p { margin: 0; color: var(--muted); font-size: .9rem; line-height: 1.45; }
+.details-section { background: linear-gradient(180deg, #fff 0%, var(--paper) 100%); }
+.details-gallery { display: grid; grid-template-columns: minmax(0, 1.3fr) repeat(2, minmax(0, .65fr)); grid-template-rows: repeat(3, 170px); gap: 10px; }
+.details-gallery figure { position: relative; overflow: hidden; margin: 0; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow-soft); }
+.details-gallery img { object-fit: contain; object-position: center; padding: 6px; background: linear-gradient(180deg, #fff, #f7f8ff); }
+.details-gallery .details-main { grid-row: 1 / -1; }
+.details-gallery .details-wide { grid-column: 2 / -1; }
 .review-panel { display: grid; align-content: center; gap: 10px; padding: 18px; }
 .review-panel > span, .insta-reviews article > span { color: var(--yellow); font-weight: 850; letter-spacing: .08em; text-shadow: 0 1px 0 rgba(48,48,144,.2); }
 .review-panel article { border-top: 1px solid var(--line); padding-top: 12px; }
@@ -165,6 +177,11 @@ img { display: block; max-width: 100%; }
 .location-card { display: grid; grid-template-columns: minmax(280px,.8fr) minmax(0,1.2fr); gap: 18px; border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(14px, 2.4vw, 28px); background: linear-gradient(135deg, #fff, #f8f9ff); box-shadow: var(--shadow); }
 .map-frame { min-height: 340px; overflow: hidden; border-radius: var(--radius); background: var(--paper-2); }
 .map-frame iframe { width: 100%; height: 100%; border: 0; }
+.final-cta-section { padding-top: 0; background: #fff; }
+.final-cta-card { display: flex; align-items: end; justify-content: space-between; gap: 32px; border: 1px solid var(--line); border-radius: var(--radius); padding: clamp(24px, 4vw, 48px); background: linear-gradient(135deg, rgba(48,48,144,.09), rgba(255,240,0,.18)); box-shadow: var(--shadow-soft); }
+.final-cta-card .section-heading { max-width: 720px; }
+.final-cta-card .section-heading p { margin: 16px 0 0; color: var(--muted); font-size: clamp(.98rem, 1.05vw, 1.12rem); line-height: 1.62; }
+.final-cta-card .hero-actions { flex: 0 0 auto; margin-top: 0; }
 
 .site-footer { border-top: 1px solid var(--line); background: #fff; }
 .footer-grid { display: grid; grid-template-columns: minmax(0,1.2fr) minmax(220px,.8fr) minmax(180px,.6fr); gap: 24px; padding-block: 34px; }
@@ -237,6 +254,8 @@ img { display: block; max-width: 100%; }
   .premium-gallery-media { min-height: 430px; }
   .premium-gallery-panel:is(.is-bruna, .is-rayban) { min-height: 0; }
   .premium-gallery-panel:is(.is-bruna, .is-rayban) .premium-gallery-media { min-height: 680px; }
+  .final-cta-card { display: grid; align-items: start; }
+  .final-cta-card .hero-actions { margin-top: 0; }
   .footer-grid { grid-template-columns: 1fr; }
 }
 
@@ -272,12 +291,19 @@ img { display: block; max-width: 100%; }
   .premium-gallery-panel:is(.is-bruna, .is-rayban) .premium-gallery-strip { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; }
   .premium-gallery-panel:is(.is-bruna, .is-rayban) .premium-gallery-strip figure { min-height: 0; aspect-ratio: 4 / 5; }
   .premium-gallery-panel:is(.is-bruna, .is-rayban) .premium-gallery-main img,
-  .premium-gallery-panel:is(.is-bruna, .is-rayban) .premium-gallery-strip img { object-fit: cover; padding: 0; }
+  .premium-gallery-panel:is(.is-bruna, .is-rayban) .premium-gallery-strip img { object-fit: contain; padding: 6px; }
   .inside-media { min-height: 390px; grid-template-columns: 1fr 1fr; grid-template-rows: 1.25fr .75fr; }
   .inside-main { grid-column: 1 / -1; grid-row: auto; }
+  .rayban-editorial { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; min-height: 0; }
+  .rayban-editorial figure { aspect-ratio: 4 / 5; }
+  .rayban-editorial .rayban-editorial-main { grid-column: 1 / -1; grid-row: auto; }
   .video-composition { grid-template-columns: 1fr 1fr; min-height: 360px; }
   .video-main { min-height: 360px; }
   .tips-list { grid-template-columns: 1fr; }
+  .details-gallery { grid-template-columns: repeat(2, minmax(0, 1fr)); grid-template-rows: none; grid-auto-rows: auto; }
+  .details-gallery figure { aspect-ratio: 4 / 5; }
+  .details-gallery .details-main { grid-column: 1 / -1; grid-row: auto; aspect-ratio: 4 / 3; }
+  .details-gallery .details-wide { grid-column: 1 / -1; aspect-ratio: 16 / 9; }
   .map-frame { min-height: 300px; }
   .insta-shell { width: min(calc(100% - 24px), 520px); }
   .insta-logo { width: 104px; height: 104px; }
@@ -522,6 +548,7 @@ img { display: block; max-width: 100%; }
 .insta-rayban-groups { display: grid; gap: 28px; }
 .insta-rayban-groups > article { border-top: 1px solid var(--line); padding-top: 14px; }
 .insta-rayban-groups h3 { margin: 0 0 12px; color: var(--blue-dark); font-size: 1rem; }
+.insta-gallery-label-space { height: 1.12rem; margin-bottom: 12px; }
 .insta-rayban-gallery { display: grid; gap: 9px; }
 .insta-rayban-gallery figure { position: relative; overflow: hidden; margin: 0; border: 1px solid var(--line); border-radius: var(--radius); background: #fff; box-shadow: var(--shadow-soft); }
 .insta-rayban-gallery .is-main { width: 100%; aspect-ratio: 4 / 5; }

@@ -30,39 +30,32 @@ import {
 
 const guidedChoices = [
   { title: "Renovar o estilo", text: "Armações com presença, sem exagero.", icon: Sparkles },
-  { title: "Formato do rosto", text: "Proporção e encaixe com orientação.", icon: Eye },
-  { title: "Trabalho em telas", text: "Lentes e conforto para rotina digital.", icon: Monitor },
-  { title: "Usar no sol", text: "Solares com proteção e acabamento.", icon: Sun },
-  { title: "Encontrar Ray-Ban", text: "Curadoria para grau, sol e estilo.", icon: Glasses },
+  { title: "Formato do rosto", text: "Proporção, encaixe e equilíbrio visual.", icon: Eye },
+  { title: "Trabalho em telas", text: "Conforto para rotina digital e leitura.", icon: Monitor },
+  { title: "Usar no sol", text: "Solares para proteção, conforto e estilo.", icon: Sun },
+  { title: "Encontrar Ray-Ban", text: "Clássicos e novidades com curadoria da loja.", icon: Glasses },
 ];
 
 const galleryGroups: GalleryGroup[] = [
   {
-    id: "bruna",
-    label: "Ray-Ban Bruna",
-    title: "Ray-Ban Bruna.",
-    text: "Retratos e detalhes da campanha.",
-    brandLogo: "/assets/otica-moderna/logo-rayban-vermelho.jpg",
-    images: rayBanBrunaImages.slice(1),
-    fit: "contain",
-  },
-  {
-    id: "rayban",
-    label: "Ray-Ban",
-    title: "Ray-Ban em campanha.",
-    text: "Modelos e detalhes em uma seleção editorial.",
-    brandLogo: "/assets/otica-moderna/logo-rayban-vermelho.jpg",
-    images: rayBanMImages.slice(0, 3),
-    fit: "contain",
-  },
-  {
     id: "armacoes",
-    label: "Armações",
-    title: "Modelos sem misturar com loja ou Ray-Ban.",
-    text: "Produtos, solares e armações organizados como vitrine editorial.",
-    images: frameImages.slice(0, 4),
-    fit: "cover",
+    label: "Armações e solares",
+    title: "Armações e solares.",
+    text: "Formatos e acabamentos para comparar com calma.",
+    images: frameImages,
+    fit: "contain",
   },
+];
+
+const rayBanShowcaseImages = [...rayBanBrunaImages.slice(1), ...rayBanMImages.slice(0, 2)];
+
+const detailImages = [
+  rayBanMImages[4],
+  rayBanMImages[3],
+  rayBanMImages[5],
+  rayBanMImages[6],
+  rayBanMImages[7],
+  rayBanMImages[8],
 ];
 
 export default function Home() {
@@ -75,11 +68,14 @@ export default function Home() {
         <GuidedChoice />
         <InsideStore />
         <GallerySection />
+        <RayBanSection />
         <BrandsSection />
         <VideoExperience />
         <TipsSection />
+        <DetailsSection />
         <TestimonialsSection />
         <LocationSection />
+        <FinalCta />
       </main>
       <Footer />
     </>
@@ -92,7 +88,7 @@ function Hero() {
       <div className="site-shell premium-hero-grid">
         <div className="premium-hero-copy">
           <h1 id="hero-title">Enxergue com estilo na Ótica Moderna.</h1>
-          <p>Óculos de grau, solares, Ray-Ban e consultoria de imagem para escolher a armação certa em Araguaína.</p>
+          <p>Óculos de grau, solares, Ray-Ban e consultoria para escolher a armação certa em Araguaína.</p>
           <div className="hero-actions">
             <a href={site.instagramUrl} className="button button-primary" target="_blank" rel="noopener noreferrer">
               <Instagram size={18} aria-hidden="true" />
@@ -143,7 +139,7 @@ function GuidedChoice() {
         <div className="section-heading compact">
           <h2 id="guided-title">Escolha por rosto, rotina e estilo.</h2>
         </div>
-        <p>Menos tentativa, mais orientação. Cada indicação parte do seu uso real.</p>
+        <p>Orientação para encontrar óculos que combinam com você, não só com a vitrine.</p>
       </div>
       <div className="site-shell guided-grid">
         {guidedChoices.map((item) => {
@@ -166,11 +162,11 @@ function GallerySection() {
     <section id="galeria" className="section gallery-section" aria-labelledby="gallery-title">
       <div className="site-shell section-head-row">
         <div className="section-heading compact">
-          <h2 id="gallery-title">Produtos em destaque, depois do ambiente.</h2>
+          <h2 id="gallery-title">Modelos, marcas e detalhes para comparar melhor.</h2>
         </div>
-        <p>Ray-Ban, armações e solares em galerias próprias, sem misturar imagens da loja.</p>
+        <p>Veja armações, solares e Ray-Ban em seleções visuais feitas para facilitar sua escolha.</p>
       </div>
-      <div id="rayban" className="site-shell">
+      <div className="site-shell">
         <PremiumGallery groups={galleryGroups} />
       </div>
     </section>
@@ -188,12 +184,37 @@ function InsideStore() {
         </div>
         <div className="section-heading compact">
           <h2 id="inside-title">Ambiente moderno, atendimento próximo.</h2>
-          <p>Um espaço pensado para experimentar, comparar e escolher óculos com calma, com atendimento presencial e consultoria.</p>
+          <p>Um espaço para experimentar, comparar e escolher seus óculos com calma.</p>
           <a href={site.mapsRouteUrl} className="button button-primary" target="_blank" rel="noopener noreferrer">
             <MapPin size={18} aria-hidden="true" />
             Visitar a loja
           </a>
         </div>
+      </div>
+    </section>
+  );
+}
+
+function RayBanSection() {
+  return (
+    <section id="rayban" className="section rayban-section" aria-labelledby="rayban-title">
+      <div className="site-shell section-head-row">
+        <div className="section-heading compact">
+          <h2 id="rayban-title">Ray-Ban na Ótica Moderna.</h2>
+        </div>
+        <p>Modelos clássicos e atuais para quem quer presença, estilo e acabamento.</p>
+      </div>
+      <div className="site-shell rayban-editorial">
+        {rayBanShowcaseImages.map((image, index) => (
+          <figure key={image.src} className={index === 0 ? "rayban-editorial-main" : undefined}>
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              sizes={index === 0 ? "(max-width: 640px) 92vw, 48vw" : "(max-width: 640px) 44vw, 24vw"}
+            />
+          </figure>
+        ))}
       </div>
     </section>
   );
@@ -206,8 +227,8 @@ function BrandsSection() {
     <section className="brands-section" aria-labelledby="brands-title">
       <div className="site-shell brands-panel">
         <div className="section-heading compact">
-          <p className="eyebrow">Marcas que trabalhamos</p>
-          <h2 id="brands-title">Seleção discreta, curada pela loja.</h2>
+          <h2 id="brands-title">Marcas que trabalhamos</h2>
+          <p>Uma seleção discreta de marcas reconhecidas, escolhidas para diferentes estilos.</p>
         </div>
         <div className="brands-strip">
           {brandLogos.map((logo) => (
@@ -230,8 +251,8 @@ function VideoExperience() {
     <section className="section video-section" aria-labelledby="video-title">
       <div className="site-shell video-grid">
         <div className="section-heading compact">
-          <h2 id="video-title">Vídeos rodando juntos, só quando visíveis.</h2>
-          <p>Todos sem áudio, em loop, com pausa automática fora da viewport.</p>
+          <h2 id="video-title">Veja os modelos em movimento.</h2>
+          <p>Detalhes de proporção, acabamento e estilo aparecem melhor quando os óculos estão em uso.</p>
         </div>
         <div className="video-composition">
           <figure className="video-main">
@@ -253,6 +274,7 @@ function TipsSection() {
         <div className="section-heading compact">
           <h2 id="tips-title">Conteúdo curto para decidir melhor.</h2>
         </div>
+        <p>Dicas rápidas para escolher armações, lentes e solares com mais segurança.</p>
       </div>
       <div className="site-shell tips-list">
         {newsTips.slice(0, 4).map((item) => (
@@ -266,6 +288,34 @@ function TipsSection() {
   );
 }
 
+function DetailsSection() {
+  return (
+    <section className="section details-section" aria-labelledby="details-title">
+      <div className="site-shell section-head-row">
+        <div className="section-heading compact">
+          <h2 id="details-title">Detalhes que ajudam na escolha.</h2>
+        </div>
+        <p>Acabamentos, formatos e estilos para comparar antes de visitar a loja.</p>
+      </div>
+      <div className="site-shell details-gallery">
+        {detailImages.map((image, index) => (
+          <figure
+            key={image.src}
+            className={index === 0 ? "details-main" : index === detailImages.length - 1 ? "details-wide" : undefined}
+          >
+            <Image
+              src={image.src}
+              alt={image.alt}
+              fill
+              sizes={index === 0 ? "(max-width: 640px) 92vw, 48vw" : "(max-width: 640px) 44vw, 24vw"}
+            />
+          </figure>
+        ))}
+      </div>
+    </section>
+  );
+}
+
 function TestimonialsSection() {
   return (
     <section className="section testimonials-section" aria-labelledby="testimonials-title">
@@ -273,7 +323,7 @@ function TestimonialsSection() {
         <div className="section-heading compact">
           <h2 id="testimonials-title">Atendimento, consultoria e qualidade.</h2>
         </div>
-        <p>Duas linhas contínuas, compactas e acessíveis, inspiradas no ritmo original da referência.</p>
+        <p>Clientes destacam a variedade, o cuidado na escolha e a experiência de compra.</p>
       </div>
       <TestimonialsMarquee testimonials={testimonials} />
     </section>
@@ -285,21 +335,40 @@ function LocationSection() {
     <section id="localizacao" className="section location-section" aria-labelledby="location-title">
       <div className="site-shell location-card">
         <div className="section-heading compact">
-          <h2 id="location-title">Rua Florêncio Machado, Araguaína.</h2>
-          <p>{site.displayAddress}</p>
+          <h2 id="location-title">Visite a Ótica Moderna em Araguaína.</h2>
+          <p>Estamos na Rua Florêncio Machado, com atendimento presencial para você escolher com calma.</p>
           <div className="hero-actions">
             <a href={site.mapsRouteUrl} className="button button-primary" target="_blank" rel="noopener noreferrer">
               <Navigation size={18} aria-hidden="true" />
               Como chegar
             </a>
-            <a href={site.instagramUrl} className="button button-secondary" target="_blank" rel="noopener noreferrer">
-              <Instagram size={18} aria-hidden="true" />
-              Ver Instagram
-            </a>
           </div>
         </div>
         <div className="map-frame">
           <iframe src={site.mapsEmbedUrl} title="Mapa da Ótica Moderna Araguaína" loading="lazy" referrerPolicy="no-referrer-when-downgrade" allowFullScreen />
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FinalCta() {
+  return (
+    <section className="section final-cta-section" aria-labelledby="final-cta-title">
+      <div className="site-shell final-cta-card">
+        <div className="section-heading">
+          <h2 id="final-cta-title">Escolha seus próximos óculos com estilo e orientação certa.</h2>
+          <p>Veja modelos no Instagram ou trace a rota para visitar a Ótica Moderna.</p>
+        </div>
+        <div className="hero-actions">
+          <a href={site.instagramUrl} className="button button-primary" target="_blank" rel="noopener noreferrer">
+            <Instagram size={18} aria-hidden="true" />
+            Ver Instagram
+          </a>
+          <a href={site.mapsRouteUrl} className="button button-secondary" target="_blank" rel="noopener noreferrer">
+            <Navigation size={18} aria-hidden="true" />
+            Como chegar
+          </a>
         </div>
       </div>
     </section>
