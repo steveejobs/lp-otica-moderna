@@ -38,36 +38,26 @@ const guidedChoices = [
 
 const galleryGroups: GalleryGroup[] = [
   {
-    id: "loja",
-    label: "Loja",
-    eyebrow: "Galeria interna",
-    title: "Ambiente real para escolher com calma.",
-    text: "Fachada, balcão, atendimento e detalhes internos em uma narrativa compacta.",
-    images: [internalImages[1], internalImages[3], internalImages[5], internalImages[4]],
-    fit: "cover",
-  },
-  {
     id: "bruna",
     label: "Ray-Ban Bruna",
-    eyebrow: "Ray-Ban Bruna",
-    title: "Produto em primeiro plano.",
-    text: "Uma coleção Ray-Ban separada da loja, com acabamento e presença visual.",
-    images: rayBanBrunaImages,
+    title: "Ray-Ban Bruna.",
+    text: "Retratos e detalhes da campanha.",
+    brandLogo: "/assets/otica-moderna/logo-rayban-vermelho.jpg",
+    images: rayBanBrunaImages.slice(1),
     fit: "contain",
   },
   {
     id: "rayban",
     label: "Ray-Ban",
-    eyebrow: "Outra coleção Ray-Ban",
-    title: "Outra curadoria Ray-Ban.",
-    text: "Modelos próprios para experimentar com orientação de estilo e lente.",
-    images: rayBanMImages.slice(0, 4),
+    title: "Ray-Ban em campanha.",
+    text: "Modelos e detalhes em uma seleção editorial.",
+    brandLogo: "/assets/otica-moderna/logo-rayban-vermelho.jpg",
+    images: rayBanMImages.slice(0, 3),
     fit: "contain",
   },
   {
     id: "armacoes",
     label: "Armações",
-    eyebrow: "Armações e solares",
     title: "Modelos sem misturar com loja ou Ray-Ban.",
     text: "Produtos, solares e armações organizados como vitrine editorial.",
     images: frameImages.slice(0, 4),
@@ -83,9 +73,8 @@ export default function Home() {
         <Hero />
         <ProofBar />
         <GuidedChoice />
-        <GallerySection />
         <InsideStore />
-        <RayBanSection />
+        <GallerySection />
         <BrandsSection />
         <VideoExperience />
         <TipsSection />
@@ -102,8 +91,6 @@ function Hero() {
     <section className="premium-hero" aria-labelledby="hero-title">
       <div className="site-shell premium-hero-grid">
         <div className="premium-hero-copy">
-          <Image src={site.logoIcon} width={230} height={108} alt="Ótica Moderna Araguaína" priority className="premium-logo" />
-          <p className="eyebrow">Ótica Moderna Araguaína</p>
           <h1 id="hero-title">Enxergue com estilo na Ótica Moderna.</h1>
           <p>Óculos de grau, solares, Ray-Ban e consultoria de imagem para escolher a armação certa em Araguaína.</p>
           <div className="hero-actions">
@@ -117,12 +104,12 @@ function Hero() {
             </a>
           </div>
         </div>
-        <div className="premium-hero-media" aria-label="Loja e produtos da Ótica Moderna">
+        <div className="premium-hero-media" aria-label="Curadoria de óculos da Ótica Moderna">
           <figure className="hero-photo hero-photo-main">
-            <Image src={site.heroImage} alt="Fachada da Ótica Moderna Araguaína" fill priority sizes="(max-width: 900px) 92vw, 640px" />
+            <Image src={rayBanBrunaImages[0].src} alt={rayBanBrunaImages[0].alt} fill priority sizes="(max-width: 900px) 92vw, 640px" />
           </figure>
           <figure className="hero-photo hero-photo-product">
-            <Image src={rayBanBrunaImages[1].src} alt={rayBanBrunaImages[1].alt} fill sizes="(max-width: 900px) 44vw, 240px" />
+            <Image src={rayBanMImages[9].src} alt={rayBanMImages[9].alt} fill sizes="(max-width: 900px) 44vw, 240px" />
           </figure>
           <div className="hero-badge">
             <BadgeCheck size={16} aria-hidden="true" />
@@ -154,7 +141,6 @@ function GuidedChoice() {
     <section id="consultoria" className="section guided-section" aria-labelledby="guided-title">
       <div className="site-shell section-head-row">
         <div className="section-heading compact">
-          <p className="eyebrow">Escolha guiada</p>
           <h2 id="guided-title">Escolha por rosto, rotina e estilo.</h2>
         </div>
         <p>Menos tentativa, mais orientação. Cada indicação parte do seu uso real.</p>
@@ -180,12 +166,11 @@ function GallerySection() {
     <section id="galeria" className="section gallery-section" aria-labelledby="gallery-title">
       <div className="site-shell section-head-row">
         <div className="section-heading compact">
-          <p className="eyebrow">Galerias</p>
-          <h2 id="gallery-title">Coleções com propósito, sem excesso.</h2>
+          <h2 id="gallery-title">Produtos em destaque, depois do ambiente.</h2>
         </div>
-        <p>Troque manualmente ou deixe a vitrine alternar sozinha. Cada aba tem imagens exclusivas.</p>
+        <p>Ray-Ban, armações e solares em galerias próprias, sem misturar imagens da loja.</p>
       </div>
-      <div className="site-shell">
+      <div id="rayban" className="site-shell">
         <PremiumGallery groups={galleryGroups} />
       </div>
     </section>
@@ -202,9 +187,8 @@ function InsideStore() {
           <figure><Image src={internalImages[8].src} alt={internalImages[8].alt} fill sizes="(max-width: 900px) 44vw, 18vw" /></figure>
         </div>
         <div className="section-heading compact">
-          <p className="eyebrow">Por dentro da loja</p>
           <h2 id="inside-title">Ambiente moderno, atendimento próximo.</h2>
-          <p>Loja real, balcão, atendimento presencial e consultoria para escolher óculos com calma.</p>
+          <p>Um espaço pensado para experimentar, comparar e escolher óculos com calma, com atendimento presencial e consultoria.</p>
           <a href={site.mapsRouteUrl} className="button button-primary" target="_blank" rel="noopener noreferrer">
             <MapPin size={18} aria-hidden="true" />
             Visitar a loja
@@ -215,36 +199,7 @@ function InsideStore() {
   );
 }
 
-function RayBanSection() {
-  return (
-    <section id="rayban" className="section rayban-section" aria-labelledby="rayban-title">
-      <div className="site-shell rayban-head">
-        <div className="section-heading compact">
-          <p className="eyebrow">Ray-Ban</p>
-          <h2 id="rayban-title">Ray-Ban com curadoria própria.</h2>
-        </div>
-        <Image src="/assets/otica-moderna/logo-rayban-vermelho.jpg" alt="Ray-Ban" width={190} height={72} className="rayban-logo" />
-      </div>
-      <div className="site-shell rayban-grid">
-        <RayBanMini title="Ray-Ban Bruna" images={[rayBanBrunaImages[0], rayBanBrunaImages[2], rayBanBrunaImages[3]]} />
-        <RayBanMini title="Outra coleção Ray-Ban" images={[rayBanMImages[4], rayBanMImages[5], rayBanMImages[6]]} />
-      </div>
-    </section>
-  );
-}
-
-function RayBanMini({ title, images }: { title: string; images: typeof rayBanBrunaImages }) {
-  return (
-    <article className="rayban-card">
-      <h3>{title}</h3>
-      <div>
-        {images.map((image) => (
-          <figure key={image.src}><Image src={image.src} alt={image.alt} fill sizes="(max-width: 760px) 29vw, 16vw" /></figure>
-        ))}
-      </div>
-    </article>
-  );
-}
+const prominentBrandNames = new Set(["Ana Hickmann", "Atitude Eyewear", "Tommy Hilfiger"]);
 
 function BrandsSection() {
   return (
@@ -256,7 +211,11 @@ function BrandsSection() {
         </div>
         <div className="brands-strip">
           {brandLogos.map((logo) => (
-            <figure key={logo.src} className={logo.featured ? "is-featured" : ""}>
+            <figure
+              key={logo.src}
+              className={prominentBrandNames.has(logo.alt) ? "is-prominent" : ""}
+              tabIndex={0}
+            >
               <Image src={logo.src} alt={logo.alt} width={180} height={76} />
             </figure>
           ))}
@@ -271,14 +230,16 @@ function VideoExperience() {
     <section className="section video-section" aria-labelledby="video-title">
       <div className="site-shell video-grid">
         <div className="section-heading compact">
-          <p className="eyebrow">Experiência em vídeo</p>
           <h2 id="video-title">Vídeos rodando juntos, só quando visíveis.</h2>
           <p>Todos sem áudio, em loop, com pausa automática fora da viewport.</p>
         </div>
         <div className="video-composition">
-          <figure className="video-main"><SmartVideo {...videos.rayBanBruna} className="smart-video" /></figure>
-          <figure><SmartVideo {...videos.rayBanM} className="smart-video" /></figure>
-          <figure><SmartVideo {...videos.rayBanBruna} className="smart-video" /></figure>
+          <figure className="video-main">
+            <SmartVideo src={videos.rayBanBruna.src} label={videos.rayBanBruna.label} className="smart-video" />
+          </figure>
+          <figure>
+            <SmartVideo src={videos.rayBanM.src} label={videos.rayBanM.label} className="smart-video" />
+          </figure>
         </div>
       </div>
     </section>
@@ -290,7 +251,6 @@ function TipsSection() {
     <section className="section tips-section" aria-labelledby="tips-title">
       <div className="site-shell section-head-row">
         <div className="section-heading compact">
-          <p className="eyebrow">Guia rápido</p>
           <h2 id="tips-title">Conteúdo curto para decidir melhor.</h2>
         </div>
       </div>
@@ -311,7 +271,6 @@ function TestimonialsSection() {
     <section className="section testimonials-section" aria-labelledby="testimonials-title">
       <div className="site-shell section-head-row">
         <div className="section-heading compact">
-          <p className="eyebrow">Depoimentos reais</p>
           <h2 id="testimonials-title">Atendimento, consultoria e qualidade.</h2>
         </div>
         <p>Duas linhas contínuas, compactas e acessíveis, inspiradas no ritmo original da referência.</p>
@@ -326,7 +285,6 @@ function LocationSection() {
     <section id="localizacao" className="section location-section" aria-labelledby="location-title">
       <div className="site-shell location-card">
         <div className="section-heading compact">
-          <p className="eyebrow">Localização</p>
           <h2 id="location-title">Rua Florêncio Machado, Araguaína.</h2>
           <p>{site.displayAddress}</p>
           <div className="hero-actions">

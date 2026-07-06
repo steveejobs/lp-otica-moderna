@@ -11,9 +11,9 @@ export type GalleryImage = {
 export type GalleryGroup = {
   id: string;
   label: string;
-  eyebrow: string;
   title: string;
   text: string;
+  brandLogo?: string;
   images: GalleryImage[];
   fit?: "cover" | "contain";
 };
@@ -50,7 +50,9 @@ export function PremiumGallery({ groups }: { groups: GalleryGroup[] }) {
 
       <article className={`premium-gallery-panel is-${active.id} fit-${fit}`} aria-live="polite">
         <div className="premium-gallery-copy">
-          <span>{active.eyebrow}</span>
+          {active.brandLogo ? (
+            <Image src={active.brandLogo} alt="Ray-Ban" width={150} height={58} className="premium-gallery-brand" />
+          ) : null}
           <h3>{active.title}</h3>
           <p>{active.text}</p>
         </div>
